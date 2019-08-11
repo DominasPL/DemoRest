@@ -2,10 +2,7 @@ package com.github.DominasPL;
 
 import com.github.DominasPL.models.Alien;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.Arrays;
 import java.util.List;
@@ -19,8 +16,15 @@ public class AlienResource {
     @Produces(MediaType.APPLICATION_XML)
     public List<Alien> getAliens() {
 
-
         return alienRepository.getAliens();
+    }
+
+    @GET
+    @Path("alien/{id}")
+    @Produces(MediaType.APPLICATION_XML)
+    public Alien getAlien(@PathParam("id") int id) {
+
+        return alienRepository.getAlien(id);
     }
 
     @POST
