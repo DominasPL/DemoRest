@@ -11,7 +11,7 @@ A simple REST Web Service with JDBC. There are four HttpRequests available (GET,
 - Maven
 - MySQL
 - Tomcat
-- PostMan
+- Postman
 
 ![Screenshot from 2019-08-12 17-36-22](https://user-images.githubusercontent.com/47396707/62878432-57736580-bd29-11e9-90a5-afa9acac0c77.png)
 
@@ -37,6 +37,6 @@ A simple REST Web Service with JDBC. There are four HttpRequests available (GET,
 
 ## Before Start
 Before run an application create your own database. Next step is to create an alien table:
-`CREATE table alien1 (id INT, name VARCHAR(20), points INT);`
+`CREATE table alien (id INT, name VARCHAR(20), points INT);`
 You should change database name, username and password in CreateConnection class before start.
 
