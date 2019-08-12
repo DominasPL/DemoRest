@@ -52,4 +52,19 @@ public class AlienResource {
 
         return alien;
     }
+
+
+    @DELETE
+    @Path("alien/{id}")
+    public Alien killAlien(@PathParam("id") int id) {
+
+        Alien alien = alienRepository.getAlien(id);
+
+        if (alien.getId() != 0) {
+            alienRepository.delete(alien.getId());
+        }
+
+        return alien;
+    }
+
 }

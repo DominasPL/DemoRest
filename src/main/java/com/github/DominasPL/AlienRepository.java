@@ -100,4 +100,18 @@ public class AlienRepository {
         }
     }
 
+
+    public void delete(int id) {
+        String sql = "DELETE FROM alien WHERE id = ?";
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
