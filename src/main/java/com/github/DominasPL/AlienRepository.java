@@ -2,52 +2,86 @@ package com.github.DominasPL;
 
 import com.github.DominasPL.models.Alien;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class AlienRepository {
 
     private List<Alien> aliens;
 
+    private Connection conn;
+
     public AlienRepository() {
-        aliens = new ArrayList<>();
-
-        Alien a1 = new Alien();
-        a1.setId(1);
-        a1.setName("Predator");
-        a1.setPoints(100);
-
-        Alien a2 = new Alien();
-        a2.setId(2);
-        a2.setName("Dominas");
-        a2.setPoints(50);
-
-        aliens.add(a1);
-        aliens.add(a2);
+        conn = CreateConnection.getConnection();
     }
 
     public List<Alien> getAliens() {
+
+        List<Alien> aliens = new ArrayList<>();
+        String sql = "SELECT * FROM alien";
+
+        try {
+
+            Statement st = conn.createStatement();
+            ResultSet resultSet = st.executeQuery(sql);
+
+            while (resultSet.next()) {
+
+                Alien alien = new Alien();
+                alien.setId(resultSet.getInt(1));
+                alien.setName(resultSet.getString(2));
+                alien.setPoints(resultSet.getInt(3));
+
+                aliens.add(alien);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return aliens;
     }
 
     public Alien getAlien(int id) {
 
-        Alien alien = null;
+        String sql = "SELECT * FROM alien WHERE id =" + id;
+        Alien alien = new Alien();
 
-        for (Alien a : aliens) {
-
-            if (a.getId() == id) {
-                alien = a;
-            }
-        }
+//        try {
+//
+//            Statement st = this.conn.createStatement();
+//            ResultSet resultSet = st.executeQuery(sql);
+//
+//
+//            if (resultSet.next()) {
+//                alien.setId(resultSet.getInt(1));
+//                alien.setName(resultSet.getString(2));
+//                alien.setPoints(resultSet.getInt(3));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
 
         return alien;
-
     }
 
 
     public void create(Alien alien) {
 
-        aliens.add(alien);
+        String sql = "INSERT INTO aliens VALUES (?,?,?)";
+//
+//        try {
+//            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+//            preparedStatement.setInt(1, alien.getId());
+//            preparedStatement.setString(2, alien.getName());
+//            preparedStatement.setInt(3, alien.getPoints());
+//
+//            preparedStatement.executeUpdate(sql);
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 }
