@@ -82,4 +82,22 @@ public class AlienRepository {
             e.printStackTrace();
         }
     }
+
+    public void update(Alien alien) {
+
+        String sql = "UPDATE alien SET name = ?, points = ? WHERE id = ?";
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, alien.getName());
+            preparedStatement.setInt(2, alien.getPoints());
+            preparedStatement.setInt(3, alien.getId());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

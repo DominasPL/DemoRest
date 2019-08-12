@@ -28,7 +28,7 @@ public class AlienResource {
 
     @POST
     @Path("alien")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON) //accept only JSON data
     public Alien createAlien(Alien alien) {
 
         alienRepository.create(alien);
@@ -37,6 +37,19 @@ public class AlienResource {
         return alien;
     }
 
+    @PUT
+    @Path("alien")
+    @Consumes(MediaType.APPLICATION_JSON) //accept only JSON data
+    public Alien updateAlien(Alien alien) {
 
 
+        if (alienRepository.getAlien(alien.getId()).getId() == 0) {
+            alienRepository.create(alien);
+
+        } else {
+            alienRepository.update(alien);
+        }
+
+        return alien;
+    }
 }
