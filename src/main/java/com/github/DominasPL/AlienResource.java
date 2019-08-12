@@ -28,6 +28,7 @@ public class AlienResource {
 
     @POST
     @Path("alien")
+    @Consumes(MediaType.APPLICATION_JSON)
     public Alien createAlien(Alien alien) {
 
         alienRepository.create(alien);

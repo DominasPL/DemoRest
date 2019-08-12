@@ -1,5 +1,8 @@
 package com.github.DominasPL.models;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Alien {
 
     private int id;

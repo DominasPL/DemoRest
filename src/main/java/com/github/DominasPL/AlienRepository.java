@@ -9,8 +9,6 @@ import java.util.List;
 
 public class AlienRepository {
 
-    private List<Alien> aliens;
-
     private Connection conn;
 
     public AlienRepository() {
@@ -48,40 +46,40 @@ public class AlienRepository {
         String sql = "SELECT * FROM alien WHERE id =" + id;
         Alien alien = new Alien();
 
-//        try {
-//
-//            Statement st = this.conn.createStatement();
-//            ResultSet resultSet = st.executeQuery(sql);
-//
-//
-//            if (resultSet.next()) {
-//                alien.setId(resultSet.getInt(1));
-//                alien.setName(resultSet.getString(2));
-//                alien.setPoints(resultSet.getInt(3));
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
+        try {
+
+            Statement st = this.conn.createStatement();
+            ResultSet resultSet = st.executeQuery(sql);
+
+
+            if (resultSet.next()) {
+                alien.setId(resultSet.getInt(1));
+                alien.setName(resultSet.getString(2));
+                alien.setPoints(resultSet.getInt(3));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
         return alien;
     }
 
 
-    public void create(Alien alien) {
+    public void create(Alien a) {
 
-        String sql = "INSERT INTO aliens VALUES (?,?,?)";
-//
-//        try {
-//            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-//            preparedStatement.setInt(1, alien.getId());
-//            preparedStatement.setString(2, alien.getName());
-//            preparedStatement.setInt(3, alien.getPoints());
-//
-//            preparedStatement.executeUpdate(sql);
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        String sql = "INSERT INTO alien VALUES (?,?,?)";
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, a.getId());
+            preparedStatement.setString(2, a.getName());
+            preparedStatement.setInt(3, a.getPoints());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
