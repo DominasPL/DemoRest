@@ -35,6 +35,8 @@ A simple REST Web Service with JDBC. There are four HttpRequests available (GET,
 ![Screenshot from 2019-08-12 17-38-39](https://user-images.githubusercontent.com/47396707/62878646-c8b31880-bd29-11e9-92bb-6feb05d78e82.png)
 
 
-
-
+## Before Start
+Before run an application create your own database. Next step is to create an alien table:
+`CREATE table alien1 (id INT, name VARCHAR(20), points INT);`
+You should change database name, username and password in CreateConnection class before start.
 
